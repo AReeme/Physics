@@ -6,9 +6,9 @@
 #include "../Physics/Forces/PointForce.h"
 #include "../Physics/Forces/AreaForce.h"
 #include "../Physics/Forces/DragForce.h"
-//#define POINT_FORCE
+#define POINT_FORCE
 //#define AREA_FORCE
-#define DRAG_FORCE
+//#define DRAG_FORCE
 
 void ForceTest::Initialize()
 {
@@ -41,13 +41,13 @@ void ForceTest::Update()
 
     if (m_input->GetMouseButton(0))
     {
-        glm::vec2 velocity = randomUnitCircle() * randomf(100, 200);
+        glm::vec2 velocity = randomUnitCircle() * randomf(1, 5);
 
-        float size = randomf(1, 8);
+        float size = randomf(0.5f, 1);
         glm::vec4 color{ randomf(), randomf(), randomf(), 1 };
-        auto body = new Body(new CircleShape(size * 2, color), m_input->GetMousePosition(), velocity, size);
+        auto body = new Body(new CircleShape(size * 2, color), m_graphics->ScreenToWorld(m_input->GetMousePosition()), velocity, size);
         body->damping = 1;
-        body->gravityScale = 30;
+        body->gravityScale = 1;
         m_world->AddBody(body);
     }
 }

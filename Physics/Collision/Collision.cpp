@@ -6,6 +6,8 @@ namespace Collision
 {
     void CreateContacts(std::vector<Body*>& bodies, std::vector<Contact>& contacts)
     {
+        if (bodies.empty()) return;
+
         for (size_t i = 0; i < bodies.size() - 1; i++)
         {
             for (size_t j = i + 1; j < bodies.size(); j++)
